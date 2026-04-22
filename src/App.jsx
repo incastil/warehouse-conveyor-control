@@ -147,6 +147,14 @@ export default function App() {
 
   const handlePause = () => {
     setRunning(false);
+    setZones((prev) => {
+      const z = { ...prev };
+      for (const zone of ['A', 'B', 'C']) {
+        z[zone] = { ...z[zone], motor: false };
+      }
+      return z;
+    });
+    setDecisions({});
     addEvent('stop', 'Conveyor system paused');
   };
 
